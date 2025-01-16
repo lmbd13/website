@@ -1,0 +1,94 @@
+/* CSS is how you can add style to your website, such as colors, fonts, and positioning of your
+   HTML content. To learn how to do something, just try searching Google for questions like
+   "how to change link color." */
+
+body {
+  background-color: #FAFAFA;
+  color: #1C1C1C;
+  font-family: Verdana;
+  padding: 5vh 25vw; /* Default padding for larger screens */
+  max-width: 1200px; /* Limit the maximum width of the body content */
+  margin: 0 auto; /* Center the content on larger screens */
+}
+
+/* Adds spacing between Abstract and Keywords sections */
+.paper dt:first-of-type + dd {
+  margin-bottom: 10px;
+}
+
+/* Adds 10px space between each details element */
+details {
+  margin-bottom: 10px; /* Space between detail sections */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  body {
+    padding: 5vh 5vw; /* Reduces padding on smaller screens */
+  }
+}
+
+
+h1 {
+  font-size: 2em;
+}
+
+nav .menu {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 15px;
+}
+
+nav .menu li {
+  display: inline;
+}
+
+nav .menu li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  padding: 5px 10px;
+}
+
+nav .menu li a:hover {
+  color: #0077cc;
+}
+
+summary {
+  cursor: pointer;
+}
+
+
+
+/* Footer styling for "Last Updated" note */
+footer {
+  font-size: 0.8em; /* Smaller font size */
+  color: #777; /* Light gray color */
+  text-align: center;
+  margin-top: 20px;
+}
+
+
+.menu {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    margin-right: 10px; /* Adjust spacing as needed */
+}
+
+.menu li:last-child {
+    margin-right: 0; /* Remove margin for the last item */
+}
+
+html, body {
+    overflow-x: hidden;
+    text-align: justify;
+}
+
+
