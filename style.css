@@ -1,7 +1,3 @@
-/* CSS is how you can add style to your website, such as colors, fonts, and positioning of your
-   HTML content. To learn how to do something, just try searching Google for questions like
-   "how to change link color." */
-
 body {
   background-color: #FAFAFA;
   color: #1C1C1C;
@@ -28,7 +24,6 @@ details {
   }
 }
 
-
 h1 {
   font-size: 2em;
 }
@@ -48,7 +43,7 @@ nav .menu li a {
   text-decoration: none;
   color: #333;
   font-weight: bold;
-  padding: 5px 10px;
+  padding: 10px 15px; /* Increased padding for larger touch targets */
 }
 
 nav .menu li a:hover {
@@ -59,36 +54,38 @@ summary {
   cursor: pointer;
 }
 
-
+/* Focus styles for interactive elements */
+a:focus,
+summary:focus {
+  outline: 2px solid #0077cc;
+  outline-offset: 2px;
+}
 
 /* Footer styling for "Last Updated" note */
 footer {
   font-size: 0.8em; /* Smaller font size */
-  color: #777; /* Light gray color */
+  color: #555; /* Darker for improved contrast */
   text-align: center;
   margin-top: 20px;
 }
 
-
 .menu {
-    display: flex;
-    justify-content: center;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 .menu li {
-    margin-right: 10px; /* Adjust spacing as needed */
+  margin-right: 10px; /* Adjust spacing as needed */
 }
 
 .menu li:last-child {
-    margin-right: 0; /* Remove margin for the last item */
+  margin-right: 0; /* Remove margin for the last item */
 }
 
 html, body {
-    overflow-x: hidden;
-    text-align: justify;
+  overflow-x: hidden;
+  text-align: justify;
 }
-
-
