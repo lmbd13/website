@@ -5,7 +5,7 @@
 body {
   background-color: #FAFAFA;
   color: #1C1C1C;
-  font-family: Verdana;
+  font-family: Georgia, serif;
   padding: 5vh 25vw; /* Default padding for larger screens */
   max-width: 1200px; /* Limit the maximum width of the body content */
   margin: 0 auto; /* Center the content on larger screens */
