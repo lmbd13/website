@@ -11,6 +11,16 @@ body {
   margin: 0 auto; /* Center the content on larger screens */
 }
 
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #1C1C1C;
+    color: #FAFAFA;
+  }
+  a {
+    color: #8ab4f8; /* tweak link color for contrast */
+  }
+}
+
 /* Adds spacing between Abstract and Keywords sections */
 .paper dt:first-of-type + dd {
   margin-bottom: 10px;
