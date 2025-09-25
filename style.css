@@ -110,3 +110,30 @@ html, body {
     overflow-x: hidden;
     text-align: justify;
 }
+
+
+.tooltip {
+  cursor: help;
+  font-size: 0.8em;
+  color: #666;
+  position: relative;
+}
+.tooltiptext {
+  visibility: hidden;
+  opacity: 0;
+  width: max-content;
+  background: #333;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  position: absolute;
+  left: 0;
+  top: 120%;
+  z-index: 1;
+  transition: opacity 0.2s;
+}
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
