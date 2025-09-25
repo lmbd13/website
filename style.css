@@ -13,13 +13,23 @@ body {
 
 @media (prefers-color-scheme: dark) {
   body {
-    background: #1C1C1C;
-    color: #FAFAFA;
+    background: #0d1117;   /* GitHub-style dark gray */
+    color: #e6edf3;        /* soft off-white text */
   }
   a {
-    color: #8ab4f8; /* tweak link color for contrast */
+    color: #58a6ff;        /* GitHub link blue */
+  }
+  a:visited {
+    color: #a371f7;        /* accessible purple */
+  }
+  a:hover {
+    color: #79c0ff;        /* lighter blue hover */
+  }
+  hr {
+    border-top: 1px solid #30363d; /* subtle divider */
   }
 }
+
 
 /* Adds spacing between Abstract and Keywords sections */
 .paper dt:first-of-type + dd {
