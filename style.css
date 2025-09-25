@@ -30,6 +30,10 @@ body {
   }
 }
 
+/* hide pronunciation helper on mobile / touch */
+@media (hover: none), (pointer: coarse) {
+  .pron { display: none; }
+}
 
 /* Adds spacing between Abstract and Keywords sections */
 .paper dt:first-of-type + dd {
