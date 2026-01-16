@@ -145,3 +145,8 @@ html, body {
   visibility: visible;
   opacity: 1;
 }
+
+a[target="_blank"]::after {
+  content: " ↗";
+  font-size: 0.9em;
+}
