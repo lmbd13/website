@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
   font-family: 'Verdana';
   src: url('/fonts/Verdana.ttf') format('truetype');
   font-weight: normal;
@@ -29,8 +29,7 @@
   font-style: normal;
   font-display: swap;
 }
-
-
+ */
 
 body { 
   background-color: #FAFAFA; 
