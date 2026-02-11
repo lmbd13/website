@@ -40,12 +40,18 @@ body {
   margin: 0 auto;
 }
 
-body header {
+nav {
   position: sticky;
   top: 0;
   background-color: #FAFAFA;
   z-index: 100;
   padding: 10px 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  nav {
+    background-color: #0d1117;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -65,9 +71,6 @@ body header {
   hr {
     border-top: 1px solid #30363d; /* subtle divider */
   }
-  body header {
-  background-color: #0d1117;
-}
 }
 
 /* hide pronunciation helper on mobile / touch */
