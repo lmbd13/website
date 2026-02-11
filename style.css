@@ -147,6 +147,21 @@ html, body {
 }
 
 a[target="_blank"]::after {
-  content: "↗";
+  content: "↗\FE0E";
   font-size: 0.7em;
+}
+
+summary {
+  cursor: pointer;
+  list-style: none;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
+summary::before {
+  content: "▶\FE0E ";
+  font-size: 0.75em;
+}
+details[open] > summary::before {
+  content: "▼\FE0E ";
 }
