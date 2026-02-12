@@ -159,11 +159,8 @@ footer {
 }
 
 html, body {
+    overflow-x: clip;
     text-align: justify;
-}
-
-html {
-    overflow-x: hidden;
 }
 
 
