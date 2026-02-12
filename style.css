@@ -45,7 +45,9 @@ header {
   top: 0;
   background-color: #FAFAFA;
   z-index: 100;
-  padding: 10px 0;
+  padding: 10px 25vw;
+  margin-left: -25vw;
+  margin-right: -25vw;
 }
 
 nav {
@@ -96,6 +98,11 @@ details {
 @media (max-width: 768px) {
   body {
     padding: 5vh 5vw; /* Reduces padding on smaller screens */
+  }
+  header {
+    padding: 10px 5vw;
+    margin-left: -5vw;
+    margin-right: -5vw;
   }
 }
 
