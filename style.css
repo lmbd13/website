@@ -40,22 +40,16 @@ body {
   margin: 0 auto;
 }
 
-header {
+nav {
   position: sticky;
   top: 0;
   background-color: #FAFAFA;
   z-index: 100;
-  padding: 10px 25vw;
-  margin-left: -25vw;
-  margin-right: -25vw;
-}
-
-nav {
-  padding: 0;
+  padding: 10px 0;
 }
 
 @media (prefers-color-scheme: dark) {
-  header {
+  nav {
     background-color: #0d1117;
   }
 }
@@ -99,17 +93,11 @@ details {
   body {
     padding: 5vh 5vw; /* Reduces padding on smaller screens */
   }
-  header {
-    padding: 10px 5vw;
-    margin-left: -5vw;
-    margin-right: -5vw;
-  }
 }
 
 
 h1 {
   font-size: 2em;
-  margin: 0 0 5px 0;
 }
 
 nav .menu {
@@ -166,7 +154,7 @@ footer {
 }
 
 html, body {
-    overflow-x: clip;
+    overflow-x: hidden;
     text-align: justify;
 }
 
