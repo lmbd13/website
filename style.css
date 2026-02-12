@@ -159,8 +159,11 @@ footer {
 }
 
 html, body {
-    overflow-x: hidden;
     text-align: justify;
+}
+
+html {
+    overflow-x: hidden;
 }
 
 
