@@ -40,7 +40,7 @@ body {
   margin: 0 auto;
 }
 
-nav {
+header {
   position: sticky;
   top: 0;
   background-color: #FAFAFA;
@@ -48,8 +48,12 @@ nav {
   padding: 10px 0;
 }
 
+nav {
+  padding: 0;
+}
+
 @media (prefers-color-scheme: dark) {
-  nav {
+  header {
     background-color: #0d1117;
   }
 }
@@ -98,6 +102,7 @@ details {
 
 h1 {
   font-size: 2em;
+  margin: 0 0 5px 0;
 }
 
 nav .menu {
