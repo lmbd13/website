@@ -1,181 +1,207 @@
-/* @font-face {
+/* FONTS
+   Self-hosted — Verdana renders identically on every OS.
+   Files live in fonts/ alongside style.css.
+   ============================================================ */
+
+@font-face {
   font-family: 'Verdana';
-  src: url('/fonts/Verdana.ttf') format('truetype');
+  src: url('fonts/verdana.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
-  font-family: 'Verdana_bold';
-  src: url('/fonts/Verdana-Bold.ttf') format('truetype');
+  font-family: 'Verdana';
+  src: url('fonts/verdana-bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
-  font-family: 'Verdana_italic';
-  src: url('/fonts/Verdana-Italic.ttf') format('truetype');
+  font-family: 'Verdana';
+  src: url('fonts/verdana-italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Verdana';
+  src: url('fonts/verdana-bold-italic.ttf') format('truetype');
   font-weight: bold;
-  font-style: normal;
+  font-style: italic;
   font-display: swap;
 }
 
-@font-face {
-  font-family: 'Verdana_bolditalic';
-  src: url('/fonts/Verdana-BoldItalic.ttf') format('truetype');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
- */
+/* DESIGN TOKENS
+   Single definition — every rule that needs these values
+   reads from here, so header rule and footer rule are
+   physically guaranteed to match.
+   ============================================================ */
 
-body { 
-  background-color: #FAFAFA; 
-  color: #1C1C1C; 
-  font-family: Verdana; 
-  padding: 5vh 25vw;
-  max-width: 750px;
+:root {
+  color-scheme: light dark;
+  --bg:         #FAFAFA;
+  --text:       #1C1C1C;
+  --rule:       #E8E8E8;   /* header divider  =  footer divider, always */
+  --muted:      #767676;
+  --tooltip-bg: #333;
+  --tooltip-fg: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:    #0d1117;
+    --text:  #e6edf3;
+    --rule:  #2d333b;
+    --muted:      #8b949e;
+    --tooltip-bg: #2d333b;
+    --tooltip-fg: #e6edf3;
+  }
+}
+
+/* BASE
+   ============================================================ */
+
+html {
+  overflow-x: clip;        /* clips without creating a scroll container —
+                              keeps position:sticky working correctly       */
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0s !important; }
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: Verdana, Tahoma, 'DejaVu Sans', Geneva, sans-serif;
+  font-size: 1rem;         /* explicit 16 px — prevents iOS tap auto-zoom  */
+  line-height: 1.7;
+  max-width: 720px;
   margin: 0 auto;
+  padding: 1rem 2rem;
+  text-align: justify;
+  hyphens: auto;
+  -webkit-font-smoothing: antialiased;
 }
 
-nav {
+/* SKIP LINK
+   ============================================================ */
+
+.skip-link {
+  position: absolute;
+  top: -999px;
+  left: 0;
+  padding: 0.5rem 1rem;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.85rem;
+  z-index: 9999;
+  text-decoration: none;
+  border: 1px solid var(--rule);
+}
+.skip-link:focus { top: 0; }
+
+/* SITE-HEADER — sticky wrapper for h1 + nav
+   ============================================================
+   Both <header> and <nav> live inside .site-header.
+   One element is sticky, so both scroll away together on desktop
+   and the desktop border sits cleanly under the nav.
+   On mobile (≤ 600 px) the nav detaches and floats as a fixed
+   dock at the bottom of the viewport.
+   ============================================================ */
+
+.site-header {
   position: sticky;
   top: 0;
-  background-color: #FAFAFA;
+  background-color: var(--bg);
   z-index: 100;
-  padding: 10px 0;
+
+  /* Negative horizontal margins extend the background to the
+     body's padding edges — prevents text bleeding to the side
+     under the sticky bar. Matching padding restores alignment. */
+  margin-left:  -2rem;
+  margin-right: -2rem;
+  padding: 0 2rem;
+
+  border-bottom: 1px solid var(--rule);  /* ← same token as footer */
+  margin-bottom: 1.5rem;
 }
+
+header  { padding: 0.75rem 0 0.25rem; }
+header h1 { margin: 0; }
+
+nav {
+  padding: 0.1rem 0 0.5rem;
+  line-height: 1.6;
+}
+
+nav a { white-space: nowrap; }
+
+/* current-page indicator — aria-current="page" set in each HTML file */
+nav a[aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+/* TYPOGRAPHY & LINKS
+   ============================================================ */
+
+h1 { font-size: 2em; }
+h2 { font-size: 1.17em; margin-bottom: 0.4rem; }
+.hint { font-size: smaller; color: var(--muted); }
+
+main > section + section { margin-top: 2rem; }
+
+a {
+  text-underline-offset: 3px;
+  transition: color 0.15s;
+}
+
+a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+summary:focus:not(:focus-visible) {
+  outline: none;
+}
+
+a[target="_blank"]::after {
+  content: "↗\FE0E";
+  font-size: 0.7em;
+}
+
+/* DARK MODE
+   ============================================================ */
 
 @media (prefers-color-scheme: dark) {
-  nav {
-    background-color: #0d1117;
-  }
+  a         { color: #58a6ff; }
+  a:visited { color: #a371f7; }
+  a:hover   { color: #79c0ff; }
 }
 
-@media (prefers-color-scheme: dark) {
-  body {
-    background: #0d1117;   /* GitHub-style dark gray */
-    color: #e6edf3;        /* soft off-white text */
-  }
-  a {
-    color: #58a6ff;        /* GitHub link blue */
-  }
-  a:visited {
-    color: #a371f7;        /* accessible purple */
-  }
-  a:hover {
-    color: #79c0ff;        /* lighter blue hover */
-  }
-  hr {
-    border-top: 1px solid #30363d; /* subtle divider */
-  }
-}
+/* TOOLTIP
+   ============================================================ */
 
-/* hide pronunciation helper on mobile / touch */
-@media (hover: none), (pointer: coarse) {
-  .pron { display: none; }
-}
-
-/* Adds spacing between Abstract and Keywords sections */
-.paper dt:first-of-type + dd {
-  margin-bottom: 10px;
-}
-
-/* Adds 10px space between each details element */
-details {
-  margin-bottom: 10px; /* Space between detail sections */
-}
-
-/* Responsive adjustments for smaller screens */
-@media (max-width: 768px) {
-  body {
-    padding: 5vh 5vw; /* Reduces padding on smaller screens */
-  }
-}
-
-
-h1 {
-  font-size: 2em;
-}
-
-nav .menu {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 15px;
-}
-
-nav .menu li {
-  display: inline;
-}
-
-nav .menu li a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-  padding: 5px 10px;
-}
-
-nav .menu li a:hover {
-  color: #0077cc;
-}
-
-summary {
-  cursor: pointer;
-}
-
-
-
-/* Footer styling for "Last Updated" note */
-footer {
-  font-size: 0.8em; /* Smaller font size */
-  color: #777; /* Light gray color */
-  text-align: center;
-  margin-top: 20px;
-}
-
-
-.menu {
-    display: flex;
-    justify-content: center;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-.menu li {
-    margin-right: 10px; /* Adjust spacing as needed */
-}
-
-.menu li:last-child {
-    margin-right: 0; /* Remove margin for the last item */
-}
-
-html, body {
-    overflow-x: hidden;
-    text-align: justify;
-}
-
-
-/* make the (?) small and subtle */
 .tooltip {
   cursor: help;
-  font-size: 1rem;     /* smaller than h1 */
-  color: #888;
+  font-size: 1rem;
+  color: var(--muted);
   position: relative;
-  vertical-align: super; /* lift it slightly, like a footnote */
+  vertical-align: super;
 }
 
-/* make the popup text small too */
 .tooltiptext {
-  font-size: 0.85rem;   /* body-text size */
+  font-size: 0.85rem;
   font-weight: normal;
   visibility: hidden;
   opacity: 0;
-  background: #333;
-  color: #fff;
+  background: var(--tooltip-bg);
+  color: var(--tooltip-fg);
   padding: 2px 6px;
   border-radius: 3px;
   position: absolute;
@@ -186,27 +212,136 @@ html, body {
   white-space: nowrap;
 }
 
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-  opacity: 1;
-}
+.tooltip:hover .tooltiptext,
+.tooltip:focus-within .tooltiptext { visibility: visible; opacity: 1; }
 
-a[target="_blank"]::after {
-  content: "↗\FE0E";
-  font-size: 0.7em;
-}
+/* tooltip requires hover — remove its trigger on touch devices */
+@media (hover: none), (pointer: coarse) { .tooltip { display: none; } }
+
+/* DETAILS / SUMMARY
+   ============================================================ */
+
+details { margin-bottom: 0.75rem; }
 
 summary {
   cursor: pointer;
   list-style: none;
+  line-height: 1.5;
+  overflow-wrap: break-word;  /* long DOI URLs wrap cleanly */
 }
-summary::-webkit-details-marker {
-  display: none;
+
+summary::-webkit-details-marker        { display: none; }
+summary::before                        { content: "▶\FE0E "; font-size: 0.75em; }
+details[open] > summary::before        { content: "▼\FE0E "; }
+.paper dt:first-of-type + dd           { margin-bottom: 0.5rem; }
+
+/* FOOTER
+   ============================================================ */
+
+footer {
+  font-size: 0.8em;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);   /* ← same token as .site-header */
 }
-summary::before {
-  content: "▶\FE0E ";
-  font-size: 0.75em;
+
+/* ══════════════════════════════════════════════════════════════
+   MOBILE  ≤ 600 px
+   ──────────────────────────────────────────────────────────────
+   Only the navigation changes: it detaches from the header and
+   floats at the bottom of the viewport as a minimal dock.
+   Everything else stays identical to desktop.
+   ══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 600px) {
+
+  /* bottom clearance so content never hides behind the dock */
+  body {
+    padding-bottom: calc(7rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* header scrolls away on mobile — the dock provides persistent nav */
+  .site-header {
+    position: static;
+    border-bottom: none;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  /* ── Floating dock ── */
+
+  nav {
+    position: fixed;
+    bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
+    left: 0.75rem;
+    right: 0.75rem;
+    z-index: 200;
+
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.2rem 0;
+    padding: 0.3rem 0.5rem;
+    font-size: 0;              /* hides pipe separators between links */
+  }
+
+  dd { margin-left: 1rem; }
+  .full { display: none; }
+
+  .tooltip { display: none; }
+
+  nav a {
+    font-size: 1rem;
+    padding: 0.5rem 0.6rem;   /* ≈ 42 px tap target */
+    -webkit-tap-highlight-color: transparent;
+  }
+  nav a:active { opacity: 0.55; transition: opacity 0.08s; }
 }
-details[open] > summary::before {
-  content: "▼\FE0E ";
+
+@media (max-width: 600px) and (prefers-color-scheme: dark) {
+  nav {
+    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   PRINT
+   ══════════════════════════════════════════════════════════════ */
+
+@media print {
+  body {
+    background: none;
+    color: #000;
+    max-width: none;
+    padding: 0;
+    text-align: left;
+  }
+
+  .site-header {
+    position: static;
+    border-bottom: 1px solid #ccc;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+  }
+
+  nav, .skip-link, .tooltip { display: none; }
+
+  a { color: #000; text-decoration: underline; }
+  a[target="_blank"]::after { content: none; }
+
+  details { display: block; }
+  details > summary { list-style: none; }
+  details > summary::before { content: none; }
+
+  footer { border-top: 1px solid #ccc; }
 }
