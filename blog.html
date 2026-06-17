@@ -15,7 +15,10 @@
     <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)">
     <link rel="icon" href="data:,">
     <link rel="preload" href="fonts/verdana.ttf" as="font" type="font/ttf" crossorigin>
-    <link href="style.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="preload" href="fonts/verdana-bold.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="fonts/verdana-italic.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="style.css" rel="stylesheet"></noscript>
   </head>
   <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -25,7 +28,7 @@
         <h1>Blog</h1>
       </header>
       <nav>
-        <a href="index.html">Home</a> |
+        <a href="/">Home</a> |
         <!--   <a href="blog.html">Blog</a> | -->
         <a href="cv.html">CV</a> |
         <a href="teaching.html">Teaching</a> |
@@ -37,16 +40,21 @@
     </div>
 
     <main id="main-content">
-      <section id="posts">
-        <h2>Posts</h2>
-        <ul>
-          <li>Placeholder blog</li>
+      <p class="hint">This is a personal blog I keep to make myself write regularly. Posts are encrypted with OpenPGP, so they will look like noise without the passphrase. If you have it, here is <a href="decrypt.txt">how to decrypt them</a>. My public-facing writing is under <a href="/#publications">publications</a> and <a href="/#working-papers">working papers</a>.</p>
+
+      <!-- POSTS:START -->
+      <section class="post-year">
+        <h2>2026</h2>
+        <ul class="post-list">
+          <li><time datetime="2026-06-12">12-06</time> <a href="posts/Γειά Κόσμε.txt">Γειά Κόσμε</a></li>
+          <li><time datetime="2026-06-12">12-06</time> <a href="posts/Hello World.txt">Hello World</a></li>
         </ul>
       </section>
+      <!-- POSTS:END -->
     </main>
 
     <footer>
-      <p>Last updated: <time datetime="2025-12-01">2025-12-01</time></p>
+      <p>Last updated: <time datetime="2026-06-11">2026-06-11</time></p>
     </footer>
   </body>
 </html>

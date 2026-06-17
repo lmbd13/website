@@ -15,7 +15,10 @@
     <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)">
     <link rel="icon" href="data:,">
     <link rel="preload" href="fonts/verdana.ttf" as="font" type="font/ttf" crossorigin>
-    <link href="style.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="preload" href="fonts/verdana-bold.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="fonts/verdana-italic.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="style.css" rel="stylesheet"></noscript>
   </head>
   <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -25,7 +28,7 @@
         <h1>Curriculum Vitae</h1>
       </header>
       <nav>
-        <a href="index.html">Home</a> |
+        <a href="/">Home</a> |
         <!--   <a href="blog.html">Blog</a> | -->
         <a href="cv.html" aria-current="page">CV</a> |
         <a href="teaching.html">Teaching</a> |
@@ -54,7 +57,8 @@
       <section>
         <h2>Professional Experience</h2>
         <ul>
-          <li>Associate Lecturer, ICMA Centre, University of Reading</li>
+          <li>Researcher, Cambridge Centre for Alternative Finance, University of Cambridge</li>
+          <li>Lecturer, Henley Business School, University of Reading</li>
           <li>Teaching and Research Fellow, University of Nicosia</li>
           <li>Research Lead, EU Blockchain Observatory and Forum</li>
           <li>Business Developer, Coinomi</li>

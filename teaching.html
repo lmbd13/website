@@ -15,7 +15,10 @@
     <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)">
     <link rel="icon" href="data:,">
     <link rel="preload" href="fonts/verdana.ttf" as="font" type="font/ttf" crossorigin>
-    <link href="style.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="preload" href="fonts/verdana-bold.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="fonts/verdana-italic.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="style.css" rel="stylesheet"></noscript>
   </head>
   <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -25,7 +28,7 @@
         <h1>Teaching</h1>
       </header>
       <nav>
-        <a href="index.html">Home</a> |
+        <a href="/">Home</a> |
         <!--   <a href="blog.html">Blog</a> | -->
         <a href="cv.html">CV</a> |
         <a href="teaching.html" aria-current="page">Teaching</a> |

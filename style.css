@@ -33,26 +33,23 @@
 }
 
 /* DESIGN TOKENS
-   Single definition — every rule that needs these values
-   reads from here, so header rule and footer rule are
-   physically guaranteed to match.
    ============================================================ */
 
 :root {
   color-scheme: light dark;
   --bg:         #FAFAFA;
   --text:       #1C1C1C;
-  --rule:       #E8E8E8;   /* header divider  =  footer divider, always */
-  --muted:      #767676;
+  --rule:       #E8E8E8;
+  --muted:      #6B6B6B;
   --tooltip-bg: #333;
   --tooltip-fg: #fff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg:    #0d1117;
-    --text:  #e6edf3;
-    --rule:  #2d333b;
+    --bg:         #0d1117;
+    --text:       #e6edf3;
+    --rule:       #2d333b;
     --muted:      #8b949e;
     --tooltip-bg: #2d333b;
     --tooltip-fg: #e6edf3;
@@ -63,8 +60,7 @@
    ============================================================ */
 
 html {
-  overflow-x: clip;        /* clips without creating a scroll container —
-                              keeps position:sticky working correctly       */
+  overflow-x: clip;
   scroll-behavior: smooth;
 }
 
@@ -77,7 +73,7 @@ body {
   background-color: var(--bg);
   color: var(--text);
   font-family: Verdana, Tahoma, 'DejaVu Sans', Geneva, sans-serif;
-  font-size: 1rem;         /* explicit 16 px — prevents iOS tap auto-zoom  */
+  font-size: 1rem;
   line-height: 1.7;
   max-width: 720px;
   margin: 0 auto;
@@ -104,13 +100,7 @@ body {
 }
 .skip-link:focus { top: 0; }
 
-/* SITE-HEADER — sticky wrapper for h1 + nav
-   ============================================================
-   Both <header> and <nav> live inside .site-header.
-   One element is sticky, so both scroll away together on desktop
-   and the desktop border sits cleanly under the nav.
-   On mobile (≤ 600 px) the nav detaches and floats as a fixed
-   dock at the bottom of the viewport.
+/* SITE-HEADER
    ============================================================ */
 
 .site-header {
@@ -118,15 +108,10 @@ body {
   top: 0;
   background-color: var(--bg);
   z-index: 100;
-
-  /* Negative horizontal margins extend the background to the
-     body's padding edges — prevents text bleeding to the side
-     under the sticky bar. Matching padding restores alignment. */
   margin-left:  -2rem;
   margin-right: -2rem;
   padding: 0 2rem;
-
-  border-bottom: 1px solid var(--rule);  /* ← same token as footer */
+  border-bottom: 1px solid var(--rule);
   margin-bottom: 1.5rem;
 }
 
@@ -140,7 +125,6 @@ nav {
 
 nav a { white-space: nowrap; }
 
-/* current-page indicator — aria-current="page" set in each HTML file */
 nav a[aria-current="page"] {
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -215,8 +199,12 @@ a[target="_blank"]::after {
 .tooltip:hover .tooltiptext,
 .tooltip:focus-within .tooltiptext { visibility: visible; opacity: 1; }
 
-/* tooltip requires hover — remove its trigger on touch devices */
 @media (hover: none), (pointer: coarse) { .tooltip { display: none; } }
+
+@media (pointer: coarse) {
+  a       { padding: 0.15rem 0; }
+  summary { padding: 0.2rem 0; }
+}
 
 /* DETAILS / SUMMARY
    ============================================================ */
@@ -227,13 +215,33 @@ summary {
   cursor: pointer;
   list-style: none;
   line-height: 1.5;
-  overflow-wrap: break-word;  /* long DOI URLs wrap cleanly */
+  overflow-wrap: break-word;
 }
 
 summary::-webkit-details-marker        { display: none; }
 summary::before                        { content: "▶\FE0E "; font-size: 0.75em; }
 details[open] > summary::before        { content: "▼\FE0E "; }
 .paper dt:first-of-type + dd           { margin-bottom: 0.5rem; }
+
+/* BLOG POST LIST
+   ============================================================ */
+
+.post-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.post-list time {
+  margin-right: 0.6rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.post-list .edited {
+  color: var(--muted);
+  font-size: 0.8em;
+}
 
 /* FOOTER
    ============================================================ */
@@ -244,25 +252,18 @@ footer {
   text-align: center;
   margin-top: 2.5rem;
   padding-top: 1rem;
-  border-top: 1px solid var(--rule);   /* ← same token as .site-header */
+  border-top: 1px solid var(--rule);
 }
 
-/* ══════════════════════════════════════════════════════════════
-   MOBILE  ≤ 600 px
-   ──────────────────────────────────────────────────────────────
-   Only the navigation changes: it detaches from the header and
-   floats at the bottom of the viewport as a minimal dock.
-   Everything else stays identical to desktop.
-   ══════════════════════════════════════════════════════════════ */
+/* MOBILE ≤ 600px
+   ============================================================ */
 
 @media (max-width: 600px) {
 
-  /* bottom clearance so content never hides behind the dock */
   body {
     padding-bottom: calc(7rem + env(safe-area-inset-bottom, 0px));
   }
 
-  /* header scrolls away on mobile — the dock provides persistent nav */
   .site-header {
     position: static;
     border-bottom: none;
@@ -271,8 +272,6 @@ footer {
     padding: 0;
     margin-bottom: 0.5rem;
   }
-
-  /* ── Floating dock ── */
 
   nav {
     position: fixed;
@@ -291,17 +290,16 @@ footer {
     justify-content: center;
     gap: 0.2rem 0;
     padding: 0.3rem 0.5rem;
-    font-size: 0;              /* hides pipe separators between links */
+    font-size: 0;
   }
 
   dd { margin-left: 1rem; }
   .full { display: none; }
-
   .tooltip { display: none; }
 
   nav a {
     font-size: 1rem;
-    padding: 0.5rem 0.6rem;   /* ≈ 42 px tap target */
+    padding: 0.5rem 0.6rem;
     -webkit-tap-highlight-color: transparent;
   }
   nav a:active { opacity: 0.55; transition: opacity 0.08s; }
@@ -313,9 +311,8 @@ footer {
   }
 }
 
-/* ══════════════════════════════════════════════════════════════
-   PRINT
-   ══════════════════════════════════════════════════════════════ */
+/* PRINT
+   ============================================================ */
 
 @media print {
   body {

@@ -1,0 +1,29 @@
+How to read the posts on this blog
+==================================
+
+Every post is encrypted with OpenPGP symmetric encryption
+(AES-256). Without the passphrase the files are unreadable
+noise. If you have the passphrase:
+
+Mac / Linux (terminal)
+
+    curl -s https://dionysopoulos.org/posts/hello-world.txt | gpg -d
+
+  or download the file and run:
+
+    gpg -d hello-world.txt
+
+  GPG asks for the passphrase, then prints the post.
+  (On macOS, install gpg once with: brew install gnupg)
+
+  If you get "Inappropriate ioctl for device" or
+  "Bad session key", GPG could not open a passphrase
+  prompt. Run this first, then retry:
+
+    export GPG_TTY=$(tty)
+
+Windows
+
+  Install Gpg4win (https://gpg4win.org), then open the
+  downloaded .txt file with Kleopatra, choose Decrypt,
+  and enter the passphrase.
